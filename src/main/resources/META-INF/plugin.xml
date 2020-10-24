@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>in.ssushant.canadian-postal-codes</id>
+    <name>Canadian Postal Codes Language</name>
+    <vendor email="support@ssushant.in" url="http://www.ssushant.in">Ssushant</vendor>
+
+    <description><![CDATA[
+    Simple Language Support Plugin<br>
+    <em>for Canadian Postal Codes</em>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
