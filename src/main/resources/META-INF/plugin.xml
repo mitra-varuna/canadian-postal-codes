@@ -13,7 +13,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <fileType name="Canadian Postal Code" implementationClass="in.ssushant.sdk.language.CanadianPostalCodeFileType"
+                  fieldName="INSTANCE" language="CanadianPostalCodeLanguage" extensions="cpc"/>
     </extensions>
 
     <actions>
