@@ -5,13 +5,14 @@ plugins {
 
 group = "in.ssushant"
 version = "1.0-SNAPSHOT"
-
+sourceSets["main"].java.srcDirs("src/main/gen")
 repositories {
     mavenCentral()
 }
 
 dependencies {
     testCompile("junit", "junit", "4.12")
+    implementation(kotlin("script-runtime", "1.4.0"))
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
