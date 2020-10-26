@@ -1,5 +1,6 @@
 {
-  parserClass="org.intellij.sdk.language.parser.CanadianPostalCodeParser"
+  parserClass="in.ssushant.sdk.language.parser.CanadianPostalCodeParser"
+  parserUtilClass="in.ssushant.sdk.language.parser.CanadianPostalCodeParserUtil"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
@@ -8,21 +9,25 @@
   psiPackage="in.ssushant.sdk.language.psi"
   psiImplPackage="in.ssushant.sdk.language.psi.impl"
 
-  elementTypeHolderClass="in.ssushant.sdk.language.psi.SCanadianPostalCodeTypes"
-  elementTypeClass="org.intellij.sdk.language.psi.CanadianPostalCodeElementType"
-  tokenTypeClass="org.intellij.sdk.language.psi.CanadianPostalCodeTokenType"
+  elementTypeHolderClass="in.ssushant.sdk.language.psi.CanadianPostalCodeTypes"
+  elementTypeClass="in.ssushant.sdk.language.psi.CanadianPostalCodeElementType"
+  tokenTypeClass="in.ssushant.sdk.language.psi.CanadianPostalCodeTokenType"
 
   psiImplUtilClass="in.ssushant.sdk.language.psi.impl.CanadianPostalCodePsiImplUtil"
-}
 
-<postalcode>           ::= <forwardsortationarea> <space> <localdeliveryunit>
-  <forwardsortationarea> ::= <provarea> <loctype> <letter>
-  <localdeliveryunit>    ::= <digit> <letter> <digit>
-  <provarea>             ::= A | B | C | E | G | H | J | K | L | M | N |
-                             P | R | S | T | V | X | Y
-  <loctype>              ::= <rural> | <urban>
-  <rural>                ::= 0
-  <urban>                ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-  <letter>               ::= A | B | C | E | G | H | J | K | L | M | N |
-                             P | R | S | T | V | W | X | Y | Z
-  <digit>                ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+  tokens = [
+     rural = 'regexp:[0]'
+     urban = 'regexp:[1-9]'
+     space = 'regexp:\s'
+     provarea='regexp:[ABCEGHJKLMNPRSTVWXY]'
+     localdeliveryunit = 'regexp:\d[ABCEGHJKLMNPRSTVWXYZ]\d'
+     letter = 'regexp:[ABCEGHJKLMNPRSTVWXYZ]'
+  ]
+}
+canadianPostalCodeFile ::= item_*
+
+item_ ::= (postalCode|COMMENT|CRLF)
+
+postalCode           ::= forwardsortationarea space localdeliveryunit
+forwardsortationarea ::= provarea loctype provarea
+loctype              ::= urban | rural
